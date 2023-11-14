@@ -36,8 +36,12 @@
 #include <osApiWrappers/dag_basePath.h>
 #elif _TARGET_ANDROID
 #include <startup/dag_androidMain.inc.cpp>
-#else
+#elif _TARGET_PC_WIN
 #include <startup/dag_winMain.inc.cpp>
+#elif _TARGET_PC_LINUX
+#include <startup/dag_linuxMain.inc.cpp>
+#else
+#error unsupported platform
 #endif
 
 static DataBlock *global_settings_blk = NULL;

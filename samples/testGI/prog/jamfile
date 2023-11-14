@@ -97,6 +97,22 @@ if $(Platform) in win32 win64 {
     engine/drv/hid_sony
     engine/drv/drv3d_ps4
   ;
+} else if $(Platform) = linux64 {
+  LinuxUseX11 = yes ;
+
+  UseProgLibs +=
+    engine/drv/drv3d_vulkan
+    engine/drv/hid_mouse
+    engine/drv/hid_keyboard
+    engine/drv/hid_nulldrv
+    engine/drv/drv3d_pc_multi
+    engine/osApiWrappers/messageBox/stub
+    engine/workCycle
+    gameLibs/statsd
+    gameLibs/folders
+   ;
+  AddLibs += -lXrandr -lXext -lX11 -lpthread -lrt ;
+
 } else if $(Platform) = android {
   UseProgLibs +=
     engine/drv/drv3d_vulkan
