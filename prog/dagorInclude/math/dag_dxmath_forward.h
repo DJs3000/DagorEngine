@@ -5,6 +5,11 @@
 //
 #pragma once
 
+#if defined(__e2k__)
+#define _XM_NO_INTRINSICS_ 1
+#endif
+
+
 #if !defined _XM_NO_INTRINSICS_ && !defined _XM_SSE_INTRINSICS_ && !defined _XM_ARM_NEON_INTRINSICS_
 #if (defined(_M_IX86) || defined(_M_X64) || __i386__ || __x86_64__) && !defined(_M_HYBRID_X86_ARM64) && !defined(_M_ARM64EC)
 #define _XM_SSE_INTRINSICS_

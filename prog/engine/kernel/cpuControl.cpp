@@ -15,7 +15,13 @@
 static std::atomic<bool> g_should_throw_float_exceptions = {false};
 static OSSpinlock float_exceptions_lock;
 
-#if _TARGET_PC_LINUX
+#if defined(__e2k__)
+static int feenablefpexcept(int excepts)
+{
+  (void)excepts;
+  return 0;
+}
+#elif _TARGET_PC_LINUX
 static int feenablefpexcept(int excepts)
 {
   unsigned short int new_exc;

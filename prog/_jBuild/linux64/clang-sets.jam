@@ -11,7 +11,7 @@ local _DEF_COM_CMDLINE =
   -Wno-undefined-var-template -Wno-inconsistent-missing-override
   -Wno-deprecated-builtins # for EASTL that uses deprecated builtins. remove after EASTL update
   -ffunction-sections -fdata-sections -fno-omit-frame-pointer
-  -ffast-math -ffinite-math-only -minline-all-stringops
+  -ffast-math -ffinite-math-only
   -fdiagnostics-absolute-paths
   "\"-D__forceinline=inline __attribute__((always_inline))\"" -D__cdecl= -D__stdcall= -D__fastcall=
   -D_POSIX_C_SOURCE=200809L -D_GNU_SOURCE

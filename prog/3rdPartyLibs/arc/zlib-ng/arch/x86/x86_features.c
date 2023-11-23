@@ -9,7 +9,10 @@
 
 #include "../../zbuild.h"
 
-#ifdef _MSC_VER
+
+#if defined(__e2k__)
+// do nothing
+#elif defined(_MSC_VER)
 #  include <intrin.h>
 #else
 // Newer versions of GCC and clang come with cpuid.h
@@ -30,7 +33,10 @@ Z_INTERNAL int x86_cpu_has_vpclmulqdq;
 Z_INTERNAL int x86_cpu_has_tzcnt;
 
 static void cpuid(int info, unsigned* eax, unsigned* ebx, unsigned* ecx, unsigned* edx) {
-#ifdef _MSC_VER
+#if defined(__e2k__)
+    (void)info;
+    *eax = *ebx = *ecx = *edx = 0;
+#elif defined(_MSC_VER)
     unsigned int registers[4];
     __cpuid((int *)registers, info);
 
@@ -44,7 +50,11 @@ static void cpuid(int info, unsigned* eax, unsigned* ebx, unsigned* ecx, unsigne
 }
 
 static void cpuidex(int info, int subinfo, unsigned* eax, unsigned* ebx, unsigned* ecx, unsigned* edx) {
-#ifdef _MSC_VER
+#if defined(__e2k__)
+    (void)info;
+    (void)subinfo;
+    *eax = *ebx = *ecx = *edx = 0;
+#elif defined(_MSC_VER)
     unsigned int registers[4];
     __cpuidex((int *)registers, info, subinfo);
 

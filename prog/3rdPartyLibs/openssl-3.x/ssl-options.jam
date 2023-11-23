@@ -59,7 +59,7 @@ rule CollectASM
   return [ SourceGlob $(1) : *.$(ASMExt) : $(2) ] ;
 }
 
-if $(Platform) in win32 android macosx tvOS iOS nswitch ps5 {
+if $(Platform) in win32 android macosx tvOS iOS nswitch ps5 linux64 {
   NoASM = true ;
 }
 

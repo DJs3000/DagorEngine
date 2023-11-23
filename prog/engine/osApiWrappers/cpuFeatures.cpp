@@ -12,7 +12,24 @@ bool cpu_feature_fast_256bit_avx_checked = false;
 
 #ifdef _TARGET_SIMD_SSE
 
-#if !_MSC_VER || defined(__clang__)
+
+#if defined(__e2k__)
+
+static inline void __get_cpuid(uint32_t l, uint32_t *eax, uint32_t *ebx, uint32_t *ecx, uint32_t *edx)
+{
+  (void)l;
+  *eax = *ebx = *ecx = *edx = 0;
+}
+
+
+static inline void __get_cpuid_count(uint32_t l, uint32_t sl, uint32_t *eax, uint32_t *ebx, uint32_t *ecx, uint32_t *edx)
+{
+  (void)l;
+  (void)sl;
+  *eax = *ebx = *ecx = *edx = 0;
+}
+
+#elif !_MSC_VER || defined(__clang__)
 #include <cpuid.h>
 #else
 #include <intrin.h>

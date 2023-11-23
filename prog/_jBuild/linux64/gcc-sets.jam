@@ -8,7 +8,7 @@ local _DEF_COM_CMDLINE =
   -MMD -Wno-trigraphs -Wno-multichar -Wformat -Wno-format-extra-args -Wno-ignored-attributes
   -Wno-deprecated -Wno-format-truncation -Wno-nonnull
   -ffunction-sections -fdata-sections -fno-omit-frame-pointer
-  -ffast-math -ffinite-math-only -minline-all-stringops
+  -ffast-math -ffinite-math-only
   -Wuninitialized -Werror=uninitialized
   -Wno-deprecated-declarations # e.g. auto_ptr<>
   -Wno-maybe-uninitialized # EASTL's string SSO seems to cause this
@@ -29,7 +29,7 @@ local _DEF_COM_CMDLINE =
 if $(DriverLinkage) = static { _DEF_COM_CMDLINE += -D_TARGET_STATIC_LIB=1 ; }
 
 local _DEF_C_CMDLINE = -std=c99 ;
-local _DEF_CPP_CMDLINE = -std=c++$(CPPStd) -fconserve-space -Wno-invalid-offsetof ;
+local _DEF_CPP_CMDLINE = -std=c++$(CPPStd) -Wno-invalid-offsetof ;
 
 _LINK         = g++ -pipe -m64 -isysroot /usr/include ;
 _LINK_DLL     = g++ -pipe -m64 -isysroot /usr/include -shared ;

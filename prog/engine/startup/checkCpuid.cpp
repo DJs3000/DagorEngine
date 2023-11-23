@@ -5,7 +5,16 @@
 #include <string.h> //memcpy
 
 #if _TARGET_SIMD_SSE
-#if !_MSC_VER || defined(__clang__)
+
+#if defined(__e2k__)
+
+static inline void get_cpuid(int regs[4], uint32_t l)
+{
+  (void)l;
+  memset(regs, 0, sizeof(int) * 4);
+}
+
+#elif !_MSC_VER || defined(__clang__)
 #include <cpuid.h>
 static inline void get_cpuid(int regs[4], uint32_t l)
 {

@@ -1332,14 +1332,14 @@ void ShaderResUnitedVdata<RES>::buildStatusStr(String &out_str, bool full_res_li
               (dagor_frame_no() > resList[i]->getQlReqLFU() + 120 && resList[i]->getQlBestLod() < resList[i]->getQlReqLodEff())
             ? '*'
             : ' ',
-          know_name ? tmp_nm.length() + 2 : 0, know_name ? tmp_nm : "");
+          know_name ? tmp_nm.length() + 2 : 0, know_name ? tmp_nm.str() : "");
       }
     for (int i = 0; i < resList.size(); i++)
       if (!resList[i]->getQlReqLFU() || resList[i]->lods.size() <= 1)
       {
         bool know_name = resolve_res_name ? resolve_res_name(tmp_nm, resList[i]) : false;
         debug("  res[%3d]=%p ldLod=%d (%d lods) %s%*s", i, resList[i], resList[i]->getQlBestLod(), resList[i]->lods.size(),
-          BufPool::calcUsedSizeStr(getBufChunks(i), tmp_stor), know_name ? tmp_nm.length() + 2 : 0, know_name ? tmp_nm : "");
+          BufPool::calcUsedSizeStr(getBufChunks(i), tmp_stor), know_name ? tmp_nm.length() + 2 : 0, know_name ? tmp_nm.str() : "");
       }
   }
 }
